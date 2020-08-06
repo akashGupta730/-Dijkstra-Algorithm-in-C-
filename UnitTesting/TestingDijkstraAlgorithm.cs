@@ -19,11 +19,11 @@ namespace DijkstraWithAdjList.Tests
             Dijkstra dijkstra = new Dijkstra(NoOfVertices,source);
             dijkstra.CallDijkstra(adjList,source);
             
-            // act
+            /* act */
             int destination=2;
             int shortestDistance = dijkstra.returnShortestPathValue(destination);
 
-            //assert
+            /* assert */
             Assert.Equal(8,shortestDistance);
         }
     }
