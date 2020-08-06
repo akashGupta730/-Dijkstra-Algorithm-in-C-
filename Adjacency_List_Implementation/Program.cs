@@ -22,7 +22,7 @@ namespace DijkstraWithAdjList
             int source =  int.Parse(Console.ReadLine());
 
             /*Call Dijkstra algorithm*/
-            Dijkstra dijkstra = new Dijkstra();
+            Dijkstra dijkstra = new Dijkstra(vertices,source);
             dijkstra.CallDijkstra(adjList,source);
         }
         
@@ -41,7 +41,7 @@ namespace DijkstraWithAdjList
 
                     /*Add edges. Since this is undirected graph so we need to add source->destination as well as destination->source*/
                     adjList.AddEdge(start,end,weight);
-                    adjList.AddEdge(end,start,weight);
+                    //adjList.AddEdge(end,start,weight);
                 }
             }
         }
