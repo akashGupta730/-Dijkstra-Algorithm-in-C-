@@ -2,8 +2,31 @@ using System;
 using System.Collections.Generic;
 namespace DijkstraWithAdjList
 {
-    class Dijkstra
+    public class Dijkstra
     {
+        public int[] dist;
+        public bool[] isIncluded;
+        public int vertices,source;
+        public Dijkstra(int Vertices,int Source){
+            vertices = Vertices;
+            source = Source;
+
+            /*Dist will contain shortest distance for each vertex from source*/
+            dist = new int[vertices];
+
+            /*isIncluded[i ] will true if vertex i is included in shortest path*/
+            isIncluded = new bool[vertices];
+
+            /*Initialise all distnace with infinity and isIncluded false*/
+            for (int i = 0; i < vertices; i++)
+            {
+                dist[i] = int.MaxValue;
+                isIncluded[i] = false;
+            }
+
+            /*Distance of source vertex from itself is 0*/
+            dist[source] = 0;
+        }
         public int minDistanceVertices(int[] dist, bool[] isIncluded, int vertices)
         {
             var minDist = int.MaxValue;
@@ -24,23 +47,6 @@ namespace DijkstraWithAdjList
 
         public void CallDijkstra(AdjacencyList adjList, int source)
         {
-            int vertices = adjList.GetNumberOfVertices();
-
-            /*Dist will contain shortest distance for each vertex from source*/
-            var dist = new int[vertices];
-
-            /*isIncluded[i ] will true if vertex i is included in shortest path*/
-            var isIncluded = new bool[vertices];
-
-            /*Initialise all distnace with infinity and isIncluded false*/
-            for (int i = 0; i < vertices; i++)
-            {
-                dist[i] = int.MaxValue;
-                isIncluded[i] = false;
-            }
-
-            /*Distance of source vertex from itself is 0*/
-            dist[source] = 0;
 
             /*Find Shortest path for every vertex*/
             for (int count = 0; count < vertices; count++)
@@ -68,6 +74,10 @@ namespace DijkstraWithAdjList
             {
                 Console.WriteLine($"distance of vertex {j} from source index {source} is: {dist[j]}");
             }
+        }
+
+        public int returnShortestPathValue(int end){
+            return dist[end];
         }
     }
 }
